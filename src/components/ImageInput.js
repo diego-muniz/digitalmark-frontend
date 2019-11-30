@@ -12,14 +12,17 @@ export const Container = styled.div`
 
   label {
     cursor: pointer;
+    height: 240px;
 
     &:hover {
       opacity: 0.7;
     }
 
     img {
-      height: 240px;
-      width: 240px;
+      min-height: 240px;
+      min-width: 240px;
+      max-height: 240px;
+      max-width: 240px;
       border: 3px solid rgba(255, 255, 255, 0.3);
       background: #eee;
     }

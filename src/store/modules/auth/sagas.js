@@ -16,6 +16,12 @@ export function* signIn({ payload }) {
 
     const { token, user } = response.data;
 
+    if (user.role !== 'admin') {
+      toast.error('Usuário não tem permissão');
+
+      return;
+    }
+
     api.defaults.headers.Authorization = `Bearer ${token}`;
     yield put(signInSuccess(token, user));
 

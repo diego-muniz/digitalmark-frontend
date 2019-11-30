@@ -22,7 +22,13 @@ export default function EditarDica({ match }) {
       await api.put(`/dicas/${match.params.id}`, data);
       toast.success('Dica atualizada com sucesso !');
     } catch (error) {
-      toast.error(error.response.data.error);
+      if (error.response.status === 400) {
+        error.response.data.forEach(e => {
+          toast.error(e.message);
+        });
+      } else {
+        toast.error('Alguma coisa deu errado!');
+      }
     } finally {
       setLoading(false);
     }

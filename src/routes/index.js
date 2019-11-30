@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import Route from './Route';
 
 import Login from '~/pages/Auth/Login';
@@ -52,6 +53,8 @@ export default function Routes() {
         isPrivate
         component={EditarDica}
       />
+
+      <Redirect to="/" />
     </Switch>
   );
 }

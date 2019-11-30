@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 import { toast } from 'react-toastify';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -38,6 +39,33 @@ export default function Dica() {
   useEffect(() => {
     obterDicas();
   }, []);
+
+  async function deletarDica({ id }) {
+    Swal.fire({
+      title: 'Você tem certeza?',
+      icon: 'warning',
+      html: 'Deletar a dica será uma ação permanente!',
+      showCloseButton: true,
+      showCancelButton: true,
+      showClass: {
+        popup: 'animated fadeInDown faster',
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster',
+      },
+      focusConfirm: true,
+      confirmButtonText: 'Deletar dica!',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#DC3545',
+      cancelButtonColor: '#007BFF',
+    }).then(async result => {
+      if (result.value) {
+        await api.delete(`/dicas/${id}`);
+        obterDicas();
+        Swal.fire('Deletado!', 'Sua dica foi deletada com sucesso', 'success');
+      }
+    });
+  }
 
   return (
     <Container>
@@ -85,9 +113,15 @@ export default function Dica() {
                           >
                             <FaEdit />
                           </Link>
-                          <Link to="/" className="btn btn-sm btn-danger">
-                            <FaTrash />
-                          </Link>
+                          <div>
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-danger"
+                              onClick={() => deletarDica(dica)}
+                            >
+                              <FaTrash />
+                            </button>
+                          </div>
                         </div>
                       </td>
                     </tr>
