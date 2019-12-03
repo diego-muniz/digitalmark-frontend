@@ -104,38 +104,10 @@ export default function DefaultLayout({ children }) {
               active: history.location.pathname.indexOf('cursos') > -1,
             })}
           >
-            <a
-              href="#pageSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
-            >
+            <Link to="/cursos">
               <MdScreenShare />
-              &nbsp; Conteúdo
-            </a>
-            <ul className="collapse list-unstyled" id="pageSubmenu">
-              <li
-                className={classNames({
-                  active: history.location.pathname === '/cursos',
-                })}
-              >
-                <Link to="/cursos">Curso</Link>
-              </li>
-              <li
-                className={classNames({
-                  active: history.location.pathname === '/modulos',
-                })}
-              >
-                <Link to="/modulos">Módulos</Link>
-              </li>
-              <li
-                className={classNames({
-                  active: history.location.pathname === '/aulas',
-                })}
-              >
-                <Link to="/aulas">Aulas</Link>
-              </li>
-            </ul>
+              &nbsp; Gerenciar Cursos
+            </Link>
           </li>
         </ul>
       </Sidebar>

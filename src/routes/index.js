@@ -13,6 +13,18 @@ import Categoria from '../pages/Categoria';
 import Dica from '../pages/Dica';
 import NovaDica from '../pages/Dica/NovaDica';
 import EditarDica from '../pages/Dica/EditarDica';
+import Servico from '../pages/Servico';
+import NovoServico from '../pages/Servico/NovoServico';
+import EditarServico from '../pages/Servico/EditarServico';
+import Curso from '../pages/Conteudo/Curso';
+import NovoCurso from '../pages/Conteudo/Curso/NovoCurso';
+import EditarCurso from '../pages/Conteudo/Curso/EditarCurso';
+import Modulo from '../pages/Conteudo/Modulo';
+import NovoModulo from '../pages/Conteudo/Modulo/NovoModulo';
+import EditarModulo from '../pages/Conteudo/Modulo/EditarModulo';
+import Aula from '../pages/Conteudo/Modulo/Aula';
+import NovaAula from '../pages/Conteudo/Modulo/Aula/NovaAula';
+import EditarAula from '../pages/Conteudo/Modulo/Aula/EditarAula';
 
 export default function Routes() {
   return (
@@ -52,6 +64,90 @@ export default function Routes() {
         exact
         isPrivate
         component={EditarDica}
+      />
+      <Route
+        path="/servicos"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={Servico}
+      />
+      <Route
+        path="/servicos/novo"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={NovoServico}
+      />
+      <Route
+        path="/servicos/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={EditarServico}
+      />
+      <Route
+        path="/cursos"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={Curso}
+      />
+      <Route
+        path="/cursos/novo"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={NovoCurso}
+      />
+      <Route
+        path="/cursos/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={EditarCurso}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={Modulo}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos/novo"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={NovoModulo}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={EditarModulo}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos/:modulo_id/aulas"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={Aula}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos/:modulo_id/aulas/novo"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={NovaAula}
+      />
+      <Route
+        path="/cursos/:curso_id/modulos/:modulo_id/aulas/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={EditarAula}
       />
 
       <Redirect to="/" />
