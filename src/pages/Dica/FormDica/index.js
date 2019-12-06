@@ -9,9 +9,8 @@ import ImageInput from '~/components/ImageInput';
 const schema = Yup.object().shape({
   titulo: Yup.string().required('O titulo é obrigatório'),
   conteudo: Yup.string().required('O conteudo é obrigatório'),
-  link: Yup.string().required('O link é obrigatório'),
+  link: Yup.string().url('O link não é valido'),
   data_enviar: Yup.string().required('A data para envio é obrigatória'),
-  imagem_id: Yup.string().required('Insira uma imagem para a dica'),
 });
 
 export default function FormDica({ handleSubmit, loading, data }) {
@@ -79,7 +78,7 @@ export default function FormDica({ handleSubmit, loading, data }) {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        {loading ? 'Carregando...' : 'Confirmar'}
+        {loading ? 'Carregando...' : 'Enviar'}
       </button>
     </Form>
   );

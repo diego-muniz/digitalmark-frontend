@@ -59,8 +59,8 @@ export default function FormAula({ handleSubmit, loading, data }) {
               placeholder="Informe o link da aula"
             />
             <small id="link" className="form-text text-muted">
-              O link deve seguir o formato
-              &quot;https://www.youtube.com/embed/(idDoVideo)&quot;.
+              Informe um link do youtube. <br />
+              Exemplo: &quot;https://www.youtube.com/watch?v=YINTTVjBrY4&quot;.
             </small>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function FormAula({ handleSubmit, loading, data }) {
         </div>
       </div>
       <button type="submit" className="btn btn-primary">
-        {loading ? 'Carregando...' : 'Confirmar'}
+        {loading ? 'Carregando...' : 'Enviar'}
       </button>
     </Form>
   );

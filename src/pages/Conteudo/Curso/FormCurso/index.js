@@ -9,13 +9,16 @@ const schema = Yup.object().shape({
   status: Yup.string()
     .oneOf(['ATIVO', 'INATIVO'])
     .required('Status não permitido!'),
+  premium: Yup.string('O curso é premium ou livre?').required(
+    'O curso é premium ou livre?'
+  ),
 });
 
 export default function FormCurso({ handleSubmit, loading, data }) {
   return (
     <Form onSubmit={handleSubmit} schema={schema} initialData={data}>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="form-group">
             <label htmlFor="nome">Título</label>
             <Input
@@ -28,7 +31,7 @@ export default function FormCurso({ handleSubmit, loading, data }) {
             />
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="form-group">
             <label htmlFor="status">Status</label>
             <Select
@@ -41,10 +44,23 @@ export default function FormCurso({ handleSubmit, loading, data }) {
             />
           </div>
         </div>
+        <div className="col-md-4">
+          <div className="form-group">
+            <label htmlFor="premium">Tipo do curso</label>
+            <Select
+              className="form-control"
+              name="premium"
+              options={[
+                { id: 1, title: 'Premium' },
+                { id: 0, title: 'Free' },
+              ]}
+            />
+          </div>
+        </div>
       </div>
 
       <button type="submit" className="btn btn-primary">
-        {loading ? 'Carregando...' : 'Confirmar'}
+        {loading ? 'Carregando...' : 'Enviar'}
       </button>
     </Form>
   );

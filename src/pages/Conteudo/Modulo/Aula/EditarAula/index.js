@@ -46,6 +46,8 @@ export default function EditarAula({ match }) {
         );
         const { data } = response;
         // eslint-disable-next-line prefer-destructuring
+
+        data.link = data.link.replace('embed/', 'watch?v=');
         setAula(data);
       } catch (error) {
         setLoadingPage(false);

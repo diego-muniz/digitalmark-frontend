@@ -33,7 +33,7 @@ export default function DefaultLayout({ children }) {
     <Wrapper>
       <Sidebar active={active}>
         <div className="sidebar-header">
-          <h3>ForkDreams</h3>
+          <h3>Dreamer</h3>
         </div>
 
         <ul className="list-unstyled component">

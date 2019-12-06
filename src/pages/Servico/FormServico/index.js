@@ -10,7 +10,7 @@ const schema = Yup.object().shape({
   titulo: Yup.string().required('O titulo é obrigatório'),
   conteudo: Yup.string().required('O conteudo é obrigatório'),
   link: Yup.string().required('O link é obrigatório'),
-  imagem_id: Yup.string().required('Insira uma imagem para a servico'),
+  imagem_id: Yup.string(),
 });
 
 export default function FormServico({ handleSubmit, loading, data }) {
@@ -42,7 +42,7 @@ export default function FormServico({ handleSubmit, loading, data }) {
               id="link"
               name="link"
               aria-describedby="link"
-              placeholder="Informe o Link da servico"
+              placeholder="Informe a url do produto no pagseguro"
             />
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function FormServico({ handleSubmit, loading, data }) {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        {loading ? 'Carregando...' : 'Confirmar'}
+        {loading ? 'Carregando...' : 'Enviar'}
       </button>
     </Form>
   );

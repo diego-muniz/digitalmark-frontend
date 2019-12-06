@@ -44,7 +44,7 @@ export default function FormModulo({ handleSubmit, loading, data }) {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        {loading ? 'Carregando...' : 'Confirmar'}
+        {loading ? 'Carregando...' : 'Enviar'}
       </button>
     </Form>
   );

@@ -64,7 +64,7 @@ export default function Categoria() {
             </div>
 
             <button type="submit" className="btn btn-primary">
-              {loading ? 'Carregando...' : 'Confirmar'}
+              {loading ? 'Carregando...' : 'Enviar'}
             </button>
           </Form>
         </div>
