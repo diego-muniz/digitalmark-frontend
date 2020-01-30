@@ -11,6 +11,8 @@ import DefaultLayout from '~/pages/_layouts/default';
 import Dashboard from '../pages/Dashboard';
 import Categoria from '../pages/Categoria';
 import Dica from '../pages/Dica';
+import Sonho from '../pages/Sonho';
+import DetalhaSonho from '../pages/Sonho/DetalhaSonho';
 import NovaDica from '../pages/Dica/NovaDica';
 import EditarDica from '../pages/Dica/EditarDica';
 import Servico from '../pages/Servico';
@@ -51,6 +53,7 @@ export default function Routes() {
         isPrivate
         component={Dica}
       />
+
       <Route
         path="/dicas/nova"
         Layout={DefaultLayout}
@@ -64,6 +67,21 @@ export default function Routes() {
         exact
         isPrivate
         component={EditarDica}
+      />
+
+      <Route
+        path="/sonhos"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={Sonho}
+      />
+      <Route
+        path="/sonhos/:id"
+        Layout={DefaultLayout}
+        exact
+        isPrivate
+        component={DetalhaSonho}
       />
       <Route
         path="/servicos"

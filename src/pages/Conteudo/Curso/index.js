@@ -6,7 +6,7 @@ import { FaEdit, FaTrash, FaListUl } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 import Loading from '~/components/Loading';
-import Pagination from '~/components/Pagination';
+import PaginationComponent from '~/components/Pagination';
 
 import { Container } from './styles';
 
@@ -132,7 +132,7 @@ export default function Curso() {
                   ))}
                 </tbody>
               </table>
-              <Pagination
+              <PaginationComponent
                 currentPage={paginationData.page}
                 totalPages={paginationData.total / paginationData.perPage}
                 onChangePage={p => obterCursos(p)}
