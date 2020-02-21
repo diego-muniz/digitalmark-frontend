@@ -20,14 +20,14 @@ export default function EditarEnfermeiro({ match }) {
     setLoading(true);
     try {
       await api.put(`/enfermeiros/${match.params.id}`, data);
-      toast.success('Dica atualizada com sucesso !');
+      toast.success('Enfermeiro atualizada com sucesso !');
     } catch (error) {
       if (error.response.status === 400) {
         error.response.data.forEach(e => {
           toast.error(e.message);
         });
       } else {
-        toast.error('Alguma coisa deu errado!');
+        toast.error('Erro ao atualizar o enfermeiro!');
       }
     } finally {
       setLoading(false);

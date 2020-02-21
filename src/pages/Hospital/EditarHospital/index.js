@@ -20,14 +20,14 @@ export default function EditarHospital({ match }) {
     setLoading(true);
     try {
       await api.put(`/hospitais/${match.params.id}`, data);
-      toast.success('Dica atualizada com sucesso !');
+      toast.success('Hospital atualizado com sucesso !');
     } catch (error) {
       if (error.response.status === 400) {
         error.response.data.forEach(e => {
           toast.error(e.message);
         });
       } else {
-        toast.error('Alguma coisa deu errado!');
+        toast.error('Erro ao atualizar o hospital!');
       }
     } finally {
       setLoading(false);
@@ -35,7 +35,7 @@ export default function EditarHospital({ match }) {
   }
 
   useEffect(() => {
-    async function getDica() {
+    async function getHospital() {
       try {
         setLoadingPage(true);
         const response = await api.get(`/hospitais/${match.params.id}`);
@@ -49,7 +49,7 @@ export default function EditarHospital({ match }) {
         setLoadingPage(false);
       }
     }
-    getDica();
+    getHospital();
   }, [match.params.id]);
 
   return (

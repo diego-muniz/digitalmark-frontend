@@ -11,7 +11,7 @@ import { Container } from './styles';
 
 import api from '~/services/api';
 
-export default function Dica() {
+export default function NovoEnfermeiro() {
   const [enfermeiros, setEnfermeiros] = useState([]);
   const [loading, setLoading] = useState(false);
 
