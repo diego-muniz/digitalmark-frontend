@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import {
-  MdMenu,
-  MdBubbleChart,
-  MdFolder,
-  MdLightbulbOutline,
-  MdPanTool,
-  MdPeopleOutline,
-  MdCloudCircle,
-  MdScreenShare,
-} from 'react-icons/md';
+
+import { MdMenu, MdLocalHospital, MdBusiness } from 'react-icons/md';
 
 import { Link } from 'react-router-dom';
 
 import classNames from 'classnames';
-import { signOut } from '~/store/modules/auth/actions';
 
 import history from '~/services/history';
 
@@ -24,112 +14,47 @@ import { Wrapper, Sidebar, Content } from './styles';
 export default function DefaultLayout({ children }) {
   const [active, setActive] = useState(false);
 
-  const dispatch = useDispatch();
-  async function handleSignOut() {
-    dispatch(signOut());
-  }
-
   return (
     <Wrapper>
       <Sidebar active={active}>
         <div className="sidebar-header">
-          <h3>Dreamer</h3>
+          <h3>Digital Mark</h3>
         </div>
 
         <ul className="list-unstyled component">
-          <p>Menu Principal</p>
-
           <li
             className={classNames({
-              active: history.location.pathname === '/dashboard',
+              active: history.location.pathname === '/enfermeiros',
             })}
           >
-            <Link to="/dashboard">
-              <MdBubbleChart />
-              &nbsp; Dashboard
+            <Link to="/enfermeiros">
+              <MdLocalHospital />
+              &nbsp; Enfermeiros
             </Link>
           </li>
           <li
             className={classNames({
-              active: history.location.pathname === '/categorias',
+              active: history.location.pathname === '/hospitais',
             })}
           >
-            <Link to="/categorias">
-              <MdFolder />
-              &nbsp; Gerenciar Categorias
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              active: history.location.pathname === '/dicas',
-            })}
-          >
-            <Link to="/dicas">
-              <MdLightbulbOutline />
-              &nbsp; Gerenciar Dicas
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              active: history.location.pathname === '/servicos',
-            })}
-          >
-            <Link to="/servicos">
-              <MdPanTool />
-              &nbsp; Gerenciar Serviços
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              active: history.location.pathname === '/usuarios',
-            })}
-          >
-            <Link to="/usuarios">
-              <MdPeopleOutline />
-              &nbsp; Gerenciar Usuários
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              active: history.location.pathname === '/sonhos',
-            })}
-          >
-            <Link to="/sonhos">
-              <MdCloudCircle />
-              &nbsp; Gerenciar Sonhos
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              active: history.location.pathname.indexOf('cursos') > -1,
-            })}
-          >
-            <Link to="/cursos">
-              <MdScreenShare />
-              &nbsp; Gerenciar Cursos
+            <Link to="/hospitais">
+              <MdBusiness />
+              &nbsp; Hospitais
             </Link>
           </li>
         </ul>
       </Sidebar>
       <Content>
-        <nav className="navbar navbar-expand-lg navbar-light bg-primary w-100">
+        <nav className="navbar navbar-expand-lg navbar-light darkBlue w-100">
           <div className="container-fluid">
             <button
               type="button"
               id="sidebarCollapse"
               onClick={() => setActive(!active)}
-              className="btn btn-primary"
+              className="btn darkBlue"
             >
               <MdMenu color="#fff" size="30" />
               &nbsp;
-            </button>
-
-            <button
-              type="button"
-              onClick={handleSignOut}
-              className="btn btn-danger"
-            >
-              Sair do sistema
             </button>
           </div>
         </nav>

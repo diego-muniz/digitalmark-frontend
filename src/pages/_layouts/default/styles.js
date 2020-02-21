@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const Sidebar = styled.nav`
   min-width: 250px;
   max-width: 250px;
-  background: ${darken(0.1, '#007bff')};
+  background: ${darken(0.1, '#25528f')};
   color: #fff;
   transition: all 0.3s;
 
@@ -27,7 +27,8 @@ export const Sidebar = styled.nav`
   }
   .sidebar-header {
     padding: 20px;
-    background: #007bff;
+    background: #25528f;
+    border: 1px solid #1b3b66;
   }
   ul.components {
     padding: 20px 0;
@@ -45,7 +46,7 @@ export const Sidebar = styled.nav`
     display: block;
   }
   ul li a:hover {
-    color: ${darken(0.2, '#007bff')};
+    color: ${darken(0.2, '#25528f')};
     background: #fff;
   }
 
@@ -55,12 +56,12 @@ export const Sidebar = styled.nav`
   ul li.active > a,
   a[aria-expanded='true'] {
     color: #fff;
-    background: #007bff;
+    background: #25528f;
   }
   ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: ${darken(0.1, '#007bff')};
+    background: ${darken(0.1, '#226cbb')};
   }
 
   ${props =>
@@ -84,6 +85,9 @@ export const Sidebar = styled.nav`
   }
 `;
 export const Content = styled.div`
+  .darkBlue {
+    background: #1b3b66;
+  }
   width: 100%;
   nav {
     padding: 19px;

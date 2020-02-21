@@ -3,172 +3,69 @@ import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import Route from './Route';
 
-import Login from '~/pages/Auth/Login';
-
-import AuthLayout from '~/pages/_layouts/auth';
 import DefaultLayout from '~/pages/_layouts/default';
 
-import Dashboard from '../pages/Dashboard';
-import Categoria from '../pages/Categoria';
-import Dica from '../pages/Dica';
-import Sonho from '../pages/Sonho';
-import DetalhaSonho from '../pages/Sonho/DetalhaSonho';
-import NovaDica from '../pages/Dica/NovaDica';
-import EditarDica from '../pages/Dica/EditarDica';
-import Servico from '../pages/Servico';
-import NovoServico from '../pages/Servico/NovoServico';
-import EditarServico from '../pages/Servico/EditarServico';
-import Curso from '../pages/Conteudo/Curso';
-import NovoCurso from '../pages/Conteudo/Curso/NovoCurso';
-import EditarCurso from '../pages/Conteudo/Curso/EditarCurso';
-import Modulo from '../pages/Conteudo/Modulo';
-import NovoModulo from '../pages/Conteudo/Modulo/NovoModulo';
-import EditarModulo from '../pages/Conteudo/Modulo/EditarModulo';
-import Aula from '../pages/Conteudo/Modulo/Aula';
-import NovaAula from '../pages/Conteudo/Modulo/Aula/NovaAula';
-import EditarAula from '../pages/Conteudo/Modulo/Aula/EditarAula';
+import Enfermeiro from '../pages/Enfermeiro';
+import Hospital from '../pages/Hospital';
+
+import NovoEnfermeiro from '../pages/Enfermeiro/NovoEnfermeiro';
+import EditarEnfermeiro from '../pages/Enfermeiro/EditarEnfermeiro';
+import NovoHospital from '../pages/Hospital/NovoHospital';
+import EditarHospital from '../pages/Hospital/EditarHospital';
 
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" Layout={AuthLayout} blank exact component={Login} />
       <Route
-        path="/dashboard"
+        path="/enfermeiros"
         Layout={DefaultLayout}
         exact
-        isPrivate
-        component={Dashboard}
-      />
-      <Route
-        path="/categorias"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Categoria}
-      />
-      <Route
-        path="/dicas"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Dica}
+        component={Enfermeiro}
       />
 
       <Route
-        path="/dicas/nova"
+        path="/enfermeiros"
         Layout={DefaultLayout}
         exact
-        isPrivate
-        component={NovaDica}
-      />
-      <Route
-        path="/dicas/:id/editar"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={EditarDica}
+        component={Enfermeiro}
       />
 
       <Route
-        path="/sonhos"
+        path="/enfermeiros/novo"
         Layout={DefaultLayout}
         exact
-        isPrivate
-        component={Sonho}
-      />
-      <Route
-        path="/sonhos/:id"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={DetalhaSonho}
-      />
-      <Route
-        path="/servicos"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Servico}
-      />
-      <Route
-        path="/servicos/novo"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={NovoServico}
-      />
-      <Route
-        path="/servicos/:id/editar"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={EditarServico}
-      />
-      <Route
-        path="/cursos"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Curso}
-      />
-      <Route
-        path="/cursos/novo"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={NovoCurso}
-      />
-      <Route
-        path="/cursos/:id/editar"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={EditarCurso}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Modulo}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos/novo"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={NovoModulo}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos/:id/editar"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={EditarModulo}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos/:modulo_id/aulas"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={Aula}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos/:modulo_id/aulas/novo"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={NovaAula}
-      />
-      <Route
-        path="/cursos/:curso_id/modulos/:modulo_id/aulas/:id/editar"
-        Layout={DefaultLayout}
-        exact
-        isPrivate
-        component={EditarAula}
+        component={NovoEnfermeiro}
       />
 
-      <Redirect to="/" />
+      <Route
+        path="/enfermeiros/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        component={EditarEnfermeiro}
+      />
+
+      <Route
+        path="/hospitais"
+        Layout={DefaultLayout}
+        exact
+        component={Hospital}
+      />
+
+      <Route
+        path="/hospitais/novo"
+        Layout={DefaultLayout}
+        exact
+        component={NovoHospital}
+      />
+
+      <Route
+        path="/hospitais/:id/editar"
+        Layout={DefaultLayout}
+        exact
+        component={EditarHospital}
+      />
+
+      <Redirect to="/enfermeiros" />
     </Switch>
   );
 }
