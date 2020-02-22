@@ -13,18 +13,24 @@ import FormHospital from '../FormHospital';
 export default function NovoHospital() {
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(data) {
+  async function handleSubmit(hospital) {
     setLoading(true);
 
     try {
-      const response = await api.post('/hospitais', data);
-      if (response.data.success) {
+      const response = await api.post('/hospitais', hospital);
+      const { data } = response;
+      if (data.success) {
         toast.success('Hospital cadastrado com sucesso !');
         history.push('/hospitais');
       } else {
-        toast.success('Erro ao cadastrar o hospital !');
+        toast.error('Erro ao cadastrar o hospital !', {
+          autoClose: 3500,
+        });
+
+        data.data.forEach(msg => {
+          toast.warn(msg.message);
+        });
       }
-      toast.success('Hospital cadastrado com sucesso !');
     } catch (error) {
       toast.error(error.response.data.error);
     } finally {

@@ -18,7 +18,7 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
   const [searchResult, setResult] = useState([]);
   const [values, setValues] = useState({});
   const [showOrHide, setShowOrHide] = useState('hide');
-  const [hospitalId, setHospitalId] = useState({});
+  const [hospitalId, setHospitalId] = useState({ hospitalId: 0 });
 
   function obterHospitais(event) {
     const delay = 500;
@@ -104,13 +104,13 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
           </div>
           <div className="col-md-3">
             <div className="form-group">
-              <label htmlFor="data_nascimento">Data Nascimento</label>
+              <label htmlFor="dataNascimento">Data Nascimento</label>
               <Input
                 type="date"
                 className="form-control"
-                id="data_nascimento"
-                name="data_nascimento"
-                aria-describedby="data_nascimento"
+                id="dataNascimento"
+                name="dataNascimento"
+                aria-describedby="dataNascimento"
                 placeholder="Informe a data de nascimento"
               />
             </div>
@@ -189,7 +189,7 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
           <div className="col-md-3">
             <div className="form-group">
               <Input
-                type="text"
+                type="number"
                 className="form-control hide"
                 id="hospitalId"
                 name="hospitalId"

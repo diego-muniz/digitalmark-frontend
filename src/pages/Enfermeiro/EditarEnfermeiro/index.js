@@ -22,12 +22,12 @@ export default function EditarEnfermeiro({ match }) {
     setLoading(true);
     try {
       // setDataEnfermeiro({ ...data });
-      const enfermeiro = {
+      const enfermeiroData = {
         ...data,
         ...dataEnfermeiro,
       };
 
-      const response = await api.put(`/enfermeiros`, enfermeiro);
+      const response = await api.put(`/enfermeiros`, enfermeiroData);
       if (response.data.success) {
         toast.success('Enfermeiro atualizado com sucesso !');
         history.push('/enfermeiros');
@@ -62,7 +62,10 @@ export default function EditarEnfermeiro({ match }) {
         }
 
         data.data.dataNascimento = dataNascimento;
-        setDataEnfermeiro({ id: data.data.enfermeiroId });
+        setDataEnfermeiro({
+          id: data.data.enfermeiroId,
+          hospitalId: data.data.hospitalId,
+        });
 
         console.log(data.data);
 

@@ -17,28 +17,30 @@ export default function EditarHospital({ match }) {
   const [dataHospital, setDataHospital] = useState();
   const [loadingPage, setLoadingPage] = useState(false);
 
-  async function handleSubmit(data) {
+  async function handleSubmit(dataHosp) {
     setLoading(true);
     try {
-      const hospital = {
-        ...data,
+      const hospitalData = {
+        ...dataHosp,
         ...dataHospital,
       };
-      const response = await api.put(`/hospitais`, hospital);
-      if (response.data.success) {
+      const response = await api.put(`/hospitais`, hospitalData);
+      const { data } = response;
+      if (data.success) {
         toast.success('Hospital atualizado com sucesso !');
         history.push('/hospitais');
       } else {
-        toast.success('Erro ao atualizar o hospital !');
+        toast.error('Erro ao editar o hospital !', {
+          autoClose: 3500,
+        });
+
+        data.data.forEach(msg => {
+          toast.warn(msg.message);
+        });
       }
     } catch (error) {
-      if (error.response.status === 400) {
-        error.response.data.forEach(e => {
-          toast.error(e.message);
-        });
-      } else {
-        toast.error('Erro ao atualizar o hospital!');
-      }
+      console.log('teste');
+      // toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
