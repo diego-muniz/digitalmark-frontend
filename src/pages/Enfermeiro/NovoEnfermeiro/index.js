@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
+import { Form, Input } from '@rocketseat/unform';
 import api from '~/services/api';
 import history from '~/services/history';
 
 import { Container } from './styles';
-
 import FormEnfermeiro from '../FormEnfermeiro';
 import FormHospital from '../../Hospital/FormHospital';
 
@@ -43,7 +43,7 @@ export default function NovoEnfermeiro() {
 
       <div className="card">
         <div className="card-body">
-          <FormEnfermeiro loading={loading} handleSubmit={handleSubmit} />
+          <FormEnfermeiro handleSubmit={handleSubmit} loading={loading} />
         </div>
       </div>
     </Container>

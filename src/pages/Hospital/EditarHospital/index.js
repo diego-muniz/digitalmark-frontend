@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Loading from '~/components/Loading';
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { Container } from './styles';
 
@@ -14,13 +14,23 @@ import FormHospital from '../FormHospital';
 export default function EditarHospital({ match }) {
   const [loading, setLoading] = useState(false);
   const [hospital, setHospital] = useState();
+  const [dataHospital, setDataHospital] = useState();
   const [loadingPage, setLoadingPage] = useState(false);
 
   async function handleSubmit(data) {
     setLoading(true);
     try {
-      await api.put(`/hospitais/${match.params.id}`, data);
-      toast.success('Hospital atualizado com sucesso !');
+      const hospital = {
+        ...data,
+        ...dataHospital,
+      };
+      const response = await api.put(`/hospitais`, hospital);
+      if (response.data.success) {
+        toast.success('Hospital atualizado com sucesso !');
+        history.push('/hospitais');
+      } else {
+        toast.success('Erro ao atualizar o hospital !');
+      }
     } catch (error) {
       if (error.response.status === 400) {
         error.response.data.forEach(e => {
@@ -41,7 +51,7 @@ export default function EditarHospital({ match }) {
         const response = await api.get(`/hospitais/${match.params.id}`);
         const { data } = response;
 
-        console.log(data);
+        setDataHospital({ id: data.id });
         setHospital(data);
       } catch (error) {
         setLoadingPage(false);

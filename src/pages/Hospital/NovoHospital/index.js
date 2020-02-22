@@ -17,8 +17,13 @@ export default function NovoHospital() {
     setLoading(true);
 
     try {
-      await api.post('/hospitais', data);
-      history.push('/hospitais');
+      const response = await api.post('/hospitais', data);
+      if (response.data.success) {
+        toast.success('Hospital cadastrado com sucesso !');
+        history.push('/hospitais');
+      } else {
+        toast.success('Erro ao cadastrar o hospital !');
+      }
       toast.success('Hospital cadastrado com sucesso !');
     } catch (error) {
       toast.error(error.response.data.error);

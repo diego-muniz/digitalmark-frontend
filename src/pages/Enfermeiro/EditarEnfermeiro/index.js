@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loading from '~/components/Loading';
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { Container } from './styles';
 
@@ -15,12 +16,24 @@ export default function EditarEnfermeiro({ match }) {
   const [loading, setLoading] = useState(false);
   const [enfermeiro, setEnfermeiro] = useState();
   const [loadingPage, setLoadingPage] = useState(false);
+  const [dataEnfermeiro, setDataEnfermeiro] = useState({});
 
   async function handleSubmit(data) {
     setLoading(true);
     try {
-      await api.put(`/enfermeiros/${match.params.id}`, data);
-      toast.success('Enfermeiro atualizada com sucesso !');
+      // setDataEnfermeiro({ ...data });
+      const enfermeiro = {
+        ...data,
+        ...dataEnfermeiro,
+      };
+
+      const response = await api.put(`/enfermeiros`, enfermeiro);
+      if (response.data.success) {
+        toast.success('Enfermeiro atualizado com sucesso !');
+        history.push('/enfermeiros');
+      } else {
+        toast.success('Erro ao atualizar o enfermeiro !');
+      }
     } catch (error) {
       if (error.response.status === 400) {
         error.response.data.forEach(e => {
@@ -49,6 +62,9 @@ export default function EditarEnfermeiro({ match }) {
         }
 
         data.data.dataNascimento = dataNascimento;
+        setDataEnfermeiro({ id: data.data.enfermeiroId });
+
+        console.log(data.data);
 
         setEnfermeiro(data.data);
       } catch (error) {
