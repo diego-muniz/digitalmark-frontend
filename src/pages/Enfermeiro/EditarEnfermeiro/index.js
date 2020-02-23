@@ -27,6 +27,8 @@ export default function EditarEnfermeiro({ match }) {
         ...dataEnfermeiro,
       };
 
+      console.log(data);
+
       const response = await api.put(`/enfermeiros`, enfermeiroData);
       if (response.data.success) {
         toast.success('Enfermeiro atualizado com sucesso !');

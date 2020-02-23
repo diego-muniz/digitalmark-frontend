@@ -1,24 +1,31 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import { Form, Input } from '@rocketseat/unform';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 import api from '~/services/api';
 
-// const schema = Yup.object().shape({
-// nome: Yup.string().required('O nome é obrigatório'),
-// conteudo: Yup.string().required('O conteudo é obrigatório'),
-// link: Yup.string().url('O link não é valido'),
-// data_enviar: Yup.string().required('A data para envio é obrigatória'),
-// });
+const schema = Yup.object().shape({
+  nome: Yup.string().required('Informe seu nome'),
+  cpf: Yup.string().required('Informe seu CPF'),
+  dataNascimento: Yup.string().required('Informe sua data de nascimento'),
+  coren: Yup.string().required('Informe seu COREN'),
+  hospital: Yup.string().required('Informe o Hospital'),
+  cnpj: Yup.string().required('Informe o CNPJ'),
+  cep: Yup.string().required('Informe o CEP'),
+  uf: Yup.string().required('Informe o UF'),
+  logradouro: Yup.string().required('Informe o Logradouro'),
+  localidade: Yup.string().required('Informe o Localidade'),
+  bairro: Yup.string().required('Informe o Bairro'),
+  hospitalId: Yup.string().required('Informe o hospitalId'),
+});
 
 export default function FormEnfermeiro({ handleSubmit, loading, data }) {
   const [searchResult, setResult] = useState([]);
   const [values, setValues] = useState({});
   const [showOrHide, setShowOrHide] = useState('hide');
-  const [hospitalId, setHospitalId] = useState({ hospitalId: 0 });
 
   function obterHospitais(event) {
     const delay = 500;
@@ -50,8 +57,7 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
   }
 
   function handleHospital(hospital) {
-    setValues({ ...hospital });
-    setHospitalId({ hospitalId: hospital.id });
+    setValues({ ...hospital, hospitalId: hospital.id });
   }
 
   async function obterEndereco(cep) {
@@ -73,7 +79,7 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
   }
   return (
     <Container>
-      <Form onSubmit={handleSubmit} initialData={data}>
+      <Form schema={schema} onSubmit={handleSubmit} initialData={data}>
         <div className="row">
           <div className="col-md-3">
             <div className="form-group">
@@ -98,7 +104,6 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
                 name="cpf"
                 aria-describedby="cpf"
                 placeholder="Informe o seu CPF"
-                // onKeyUp={e => obterEndereco(e)}
               />
             </div>
           </div>
@@ -190,13 +195,12 @@ export default function FormEnfermeiro({ handleSubmit, loading, data }) {
             <div className="form-group">
               <Input
                 type="number"
-                className="form-control hide"
+                className="form-control"
                 id="hospitalId"
                 name="hospitalId"
                 aria-describedby="hospitalId"
-                readOnly
                 placeholder="Informe o CNPJ"
-                value={hospitalId.hospitalId}
+                value={values.hospitalId}
                 onChange={e => setValues({ hospitalId: e.target.value })}
               />
             </div>
